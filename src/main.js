@@ -13,7 +13,7 @@ function init() {
   document.body.appendChild(renderer.domElement);
   
   camera = new THREE.PerspectiveCamera(45,WIDTH/HEIGHT,0.1,20000);
-  camera.position.set(0,6,0);
+  camera.position.set(5,10,20);
   scene.add(camera);
   
   window.addEventListener('resize', function(){
