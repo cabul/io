@@ -39,6 +39,7 @@ function init() {
       materials[i].shading = THREE.FlatShading;
     }
     mesh = new THREE.Mesh(geometry,material);
+    mesh.position.y -= 2;
     scene.add(mesh);
   });
   
