@@ -28,7 +28,7 @@ function init() {
   var light = new THREE.PointLight(0xffffff);
   light.position.set(100,200,100);
   scene.add(light);
-  var ambient = new THREE.AmbientLight(0x707070);
+  var ambient = new THREE.AmbientLight(0xd0d0d0);
   scene.add(ambient);
   
   var loader = new THREE.JSONLoader();
