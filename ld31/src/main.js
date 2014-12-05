@@ -147,7 +147,7 @@ requestAnimationFrame(function render( tick ){
   stats.update();
 });
 
-// toggleHelp();
+toggleHelp();
 
 window.camera = camera;
 window.grid = grid;
