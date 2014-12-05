@@ -22,18 +22,8 @@ var createDialog = function() {
     {
       title: 'Controls',
       content: [
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>h</i> to toggle this help menu',
-        'Use <i>F5</i> to change the view angle'
+        'Use <i>H</i> to toggle this help menu',
+        'Use <i>C</i> to change the view angle'
       ]
     }
 

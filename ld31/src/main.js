@@ -130,7 +130,7 @@ keycombo.addEventListener('down',function(){
   player.move({y:-1},800);
 });
 
-keycombo.addEventListener('f5',function(){
+keycombo.addEventListener('c',function(){
   controls.changeView();
 });
 
