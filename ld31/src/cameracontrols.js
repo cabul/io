@@ -63,6 +63,10 @@ var CameraControls = function( camera, domElement ) {
 
   var viewState = 1;
   var camConfigs = [
+  // { posx: 0, posy: 10, posz: 0,
+  //   rotx: -1.5707963267948966,
+  //   roty: 0.0,
+  //   rotz: -0.7853981633974481 },
     { posx: -10, posy: 10, posz: 10,
       rotx: -0.7853981603287307,
       roty: -0.6154796918457905,
@@ -70,11 +74,15 @@ var CameraControls = function( camera, domElement ) {
     { posx: 10, posy: 10, posz: 10,
       rotx: -0.7853981603287307,
       roty: 0.6154796918457905,
-      rotz: 0.523598776277004 }
-    // { posx: 0, posy: 10, posz: 0,
-    //   rotx: -1.5707963267948966,
-    //   roty: 0.0,
-    //   rotz: -0.7853981633974481 }
+      rotz: 0.523598776277004 },
+    { posx: 10, posy: 10, posz: -10,
+      rotx: -2.3561944932610626,
+      roty: 0.6154796918457909,
+      rotz: 2.6179938773127893 },
+    { posx: -10, posy: 10, posz: -10,
+      rotx: -2.3561944932610626,
+      roty: -0.6154796918457909,
+      rotz: -2.6179938773127893 }
   ];
 
   var changingView = false;
