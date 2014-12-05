@@ -32,12 +32,12 @@ var listeners = {};
 var pressed = {};
 
 document.body.addEventListener('keyup',function(event){
-  // event.preventDefault();
+  event.preventDefault();
   pressed[event.keyCode] = false;
 },false);
 
 document.body.addEventListener('keydown',function(event){
-  // event.preventDefault();
+  event.preventDefault();
   pressed[event.keyCode] = true;
   Object.keys(listeners).forEach(function(keys){
     var i,len;
