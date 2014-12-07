@@ -147,7 +147,10 @@ requestAnimationFrame(function render( tick ){
   stats.update();
 });
 
-toggleHelp();
+// toggleHelp();
 
 window.camera = camera;
 window.grid = grid;
+window.cube = new THREE.BoxGeometry(1,1,1);
+window.mat = new THREE.MeshLambertMaterial({color: 0xffffff});
+window.scene = scene;
