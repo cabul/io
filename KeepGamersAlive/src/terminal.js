@@ -1,6 +1,7 @@
 var gui = require('./debug');
 var pixi = require('pixi');
 var DOC = pixi.DisplayObjectContainer;
+var repl = require('./repl');
 
 var Alias = {
   left      : 37,
@@ -33,29 +34,35 @@ var Alias = {
 };
 
 var isValidKey = function(k){
-  return ( k>=48 && k<=57 ) || ( k>=65 && k<=90 ) || k === Alias.space;
+  return ( k>=65 && k<=90 ) || k === Alias.space;
 };
 
-var Console = function(){
+var Terminal = function(){
   DOC.apply(this);
+  this.enabled = false;
   var bg = new pixi.Graphics();
   this.addChild(bg);
   bg.lineStyle(4,0x000000);
   bg.beginFill(0xffffff);
-  bg.drawRect(0,0,496,46);
+  bg.drawRect(0,0,496,96);
   this.prefix = '>';
   this.lines = [];
   this.lineno = 0;
-  this.buffer = '';
+  this.buffer = 'NEW GAME';
   this.lastLine = '';
-  this.cursor = 0;
+  this.cursor = 8;
   this.min = 0;
+  this.output = new pixi.Text('Type something',{font: 'bold 32px VT323'});
+  this.output.position.x = 12;
+  this.output.position.y = 12;
+  this.addChild(this.output);
   this.line = new pixi.Text('>',{font: 'bold 32px VT323'});
   this.line.position.x = 12;
-  this.line.position.y = 12;
+  this.line.position.y = 52;
   this.addChild(this.line);
   this.online = [];
   var _this = this;
+  this.renderText();
 
   var actions = {};
   actions[Alias.enter] = function(event){
@@ -105,16 +112,15 @@ var Console = function(){
 
 };
 
-Console.prototype = DOC.prototype;
+Terminal.prototype = Object.create(DOC.prototype);
 
-Console.prototype.renderText = function(){
+Terminal.prototype.renderText = function(){
   this.min = Math.max( this.cursor-32,0 );
   this.line.setText(this.prefix+this.buffer.substr(this.min,32));
-  console.log(this);
-  console.log(this.buffer);
+  return this;
 };
 
-Console.prototype.removeChar = function(){
+Terminal.prototype.removeChar = function(){
   var buffer = this.buffer;
   var len = buffer.length;
   var cursor = this.cursor;
@@ -122,32 +128,35 @@ Console.prototype.removeChar = function(){
     this.buffer = buffer.substring(0,cursor-1)+buffer.substring(cursor,len);
     this.cursor -= 1;
   }
+  return this;
 };
 
-Console.prototype.pushChar = function(c){
+Terminal.prototype.pushChar = function(c){
   var cursor = this.cursor;
   var buffer = this.buffer;
-  console.log('Buffer',buffer);
-  console.log('Char',c);
   this.buffer = buffer.substring(0,cursor) + c + buffer.substring(cursor,buffer.length);
   this.cursor += 1;
+  return this;
 };
 
-Console.prototype.moveCursor = function(d){
+Terminal.prototype.moveCursor = function(d){
   var cursor = this.cursor + d;
   var len = this.buffer.length;
   if( cursor >= 0 && cursor <= len ) {
     this.cursor = cursor;
   }
+  return this;
 };
 
-Console.prototype.pushLine = function(){
+Terminal.prototype.pushLine = function(){
   this.lineno = this.lines.push( this.buffer );
+  this.println( repl(this.buffer) );
   this.buffer = '';
   this.cursor = 0;
+  return this;
 };
 
-Console.prototype.moveHistory = function(d){
+Terminal.prototype.moveHistory = function(d){
   var lineno = this.lineno + d;
   var count = this.lines.length;
   if( lineno === count ) {
@@ -160,6 +169,12 @@ Console.prototype.moveHistory = function(d){
     this.lineno = lineno;
     this.cursor = this.buffer.length;
   }
+  return this;
 };
 
-module.exports = Console;
+Terminal.prototype.println = function(text){
+  this.output.setText(text);
+  return this;
+};
+
+module.exports = Terminal;

@@ -3,7 +3,11 @@ var Fonts = require('./fonts');
 var renderer = pixi.autoDetectRenderer( 800,600 );
 document.body.appendChild(renderer.view);
 
-var game = require('./game');
+window.audio = new Audio('mp3/typing.mp3');
+window.audio.loop = true;
+window.audio.play();
+
+var game = require('./setup');
 
 var assets = game.assets || [];
 

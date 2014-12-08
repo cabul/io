@@ -1,0 +1,22 @@
+module.exports = [
+'Entire Game on One Screen',
+'Artificial Life',
+'Snowman',
+'After the End',
+'Death is Useful',
+'One Rule',
+'Generation',
+'Avoid the Light',
+'Deep Space',
+'You Are Not Sup. 2 Be Here',
+'Everything Falls Apart',
+'End Where You Started',
+'Isolation',
+'Machines',
+'You Can’t Stop',
+'Color is Everything',
+'Playing Both Sides',
+'Borders',
+'Chaos',
+'Deja vu'
+];
